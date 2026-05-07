@@ -46,14 +46,16 @@ export default function Navbar() {
         <span style={styles.link} onClick={() => scrollTo('problem')}>Problem</span>
         <span style={styles.link} onClick={() => scrollTo('how')}>How it works</span>
         <span style={styles.link} onClick={() => scrollTo('features')}>Features</span>
-        <span
+        <a
+          href="https://stamped-flutter-app.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
           style={styles.cta}
-          onClick={() => scrollTo('cta')}
           onMouseEnter={e => e.target.style.background = 'var(--purple-dark)'}
           onMouseLeave={e => e.target.style.background = 'var(--purple)'}
         >
           Get started free
-        </span>
+        </a>
       </div>
     </nav>
   )

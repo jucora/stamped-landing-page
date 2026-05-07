@@ -20,7 +20,9 @@ export default function CTA() {
           Start today. Create your first project and share your link with your client in under 2 minutes.
         </p>
         <a
-          href="#"
+          href="https://stamped-flutter-app.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             background: '#fff', color: 'var(--purple)',

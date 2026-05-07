@@ -60,8 +60,9 @@ export default function Hero() {
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <a
-              href="#cta"
-              onClick={e => { e.preventDefault(); document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' }) }}
+              href="https://stamped-flutter-app.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 background: 'var(--purple)', color: '#fff',
