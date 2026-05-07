@@ -18,6 +18,21 @@ const styles = {
     height: 150,
     objectFit: 'contain',
   },
+  toggleButton: {
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    marginLeft: 12,
+    cursor: 'pointer',
+  },
+  toggleBar: {
+    width: 22,
+    height: 2,
+    borderRadius: 2,
+    background: 'var(--text-dark)',
+    display: 'block',
+    margin: '4px 0',
+  },
   links: {
     display: 'flex', alignItems: 'center', gap: 32,
   },
@@ -35,14 +50,29 @@ const styles = {
 }
 
 export default function Navbar() {
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const [menuOpen, setMenuOpen] = useState(false)
+  const scrollTo = (id) => {
+    setMenuOpen(false)
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <nav style={styles.nav}>
-      <a href="#" style={styles.logo}>
+      <a href="#" style={styles.logo} onClick={() => setMenuOpen(false)}>
         <img src={stampedLogo} alt="Stamped logo" style={styles.logoImage} />
       </a>
-      <div style={styles.links}>
+      <button
+        type="button"
+        aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+        onClick={() => setMenuOpen(prev => !prev)}
+        style={styles.toggleButton}
+        className="navbar-toggle"
+      >
+        <span style={styles.toggleBar} />
+        <span style={styles.toggleBar} />
+        <span style={styles.toggleBar} />
+      </button>
+      <div style={styles.links} className={`navbar-links ${menuOpen ? 'open' : ''}`}>
         <span style={styles.link} onClick={() => scrollTo('problem')}>Problem</span>
         <span style={styles.link} onClick={() => scrollTo('how')}>How it works</span>
         <span style={styles.link} onClick={() => scrollTo('features')}>Features</span>
@@ -51,6 +81,7 @@ export default function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           style={styles.cta}
+          onClick={() => setMenuOpen(false)}
           onMouseEnter={e => e.target.style.background = 'var(--purple-dark)'}
           onMouseLeave={e => e.target.style.background = 'var(--purple)'}
         >
