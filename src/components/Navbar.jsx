@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import stampedLogo from '../assets/stamped_logo.png'
 
 const styles = {
   nav: {
@@ -10,10 +11,12 @@ const styles = {
     borderBottom: '1px solid var(--border)',
   },
   logo: {
-    display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none',
+    display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none',
   },
-  logoText: {
-    fontSize: '1.125rem', fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.02em',
+  logoImage: {
+    width: 150,
+    height: 150,
+    objectFit: 'contain',
   },
   links: {
     display: 'flex', alignItems: 'center', gap: 32,
@@ -37,12 +40,7 @@ export default function Navbar() {
   return (
     <nav style={styles.nav}>
       <a href="#" style={styles.logo}>
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-          <circle cx="15" cy="15" r="15" fill="#EDE9FE"/>
-          <path d="M10 13.5c0-1 .9-1.8 1.9-1.8h6.2a1.8 1.8 0 010 3.6H12a1.8 1.8 0 000 3.6h6.2"
-            stroke="#5B21B6" strokeWidth="1.8" strokeLinecap="round"/>
-        </svg>
-        <span style={styles.logoText}>Stamped</span>
+        <img src={stampedLogo} alt="Stamped logo" style={styles.logoImage} />
       </a>
       <div style={styles.links}>
         <span style={styles.link} onClick={() => scrollTo('problem')}>Problem</span>
