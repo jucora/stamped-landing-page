@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react'
-import AppMockup from './AppMockup'
+import { useEffect } from 'react'
+import heroImage from '../assets/stamped-team.jpg'
 
 export default function Hero() {
-  const ref = useRef()
   useEffect(() => {
-    setTimeout(() => ref.current?.classList.add('visible'), 100)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'))
+    }, 100)
   }, [])
 
   return (
@@ -27,7 +28,7 @@ export default function Hero() {
         className="hero-grid">
 
         {/* Left */}
-        <div ref={ref} className="reveal" style={{ transitionDelay: '0ms' }}>
+        <div className="reveal" style={{ transitionDelay: '0ms' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             background: 'var(--purple-soft)', border: '1px solid var(--purple-border)',
@@ -100,9 +101,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — mockup */}
+        {/* Right — image */}
         <div className="reveal" style={{ transitionDelay: '120ms' }}>
-          <AppMockup />
+          <img
+            src={heroImage}
+            alt="Stamped right side"
+            style={{ width: '100%', maxWidth: 560, borderRadius: 24, objectFit: 'contain' }}
+          />
         </div>
       </div>
 
