@@ -1,10 +1,10 @@
 import { useReveal } from '../hooks/useReveal'
 
 const before = [
-  { emoji: '📱', title: 'Agreements over WhatsApp', desc: "Nobody remembers exactly what was promised" },
-  { emoji: '📧', title: 'Approvals over email', desc: 'Endless threads with no clear history' },
-  { emoji: '📊', title: 'Deliverables in spreadsheets', desc: 'Outdated versions scattered everywhere' },
-  { emoji: '🔍', title: 'No proof of delivery', desc: "Impossible to prove what you completed" },
+  { title: 'No documented agreements', desc: "Nobody remembers exactly what was promised" },
+  { title: 'Approvals over email', desc: 'Endless threads with no clear history' },
+  { title: 'Deliverables in spreadsheets', desc: 'Outdated versions scattered everywhere' },
+  { title: 'No proof of delivery', desc: "Impossible to prove what you completed" },
 ]
 
 const after = [
@@ -18,6 +18,14 @@ const Check = () => (
   <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(124,58,237,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
       <path d="M2 5l2 2 4-4" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  </div>
+)
+
+const Cross = () => (
+  <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(248,113,113,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M2 2l6 6M8 2L2 8" stroke="#F87171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   </div>
 )
@@ -45,9 +53,9 @@ export default function Problem() {
               Without Stamped
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {before.map(({ emoji, title, desc }) => (
+              {before.map(({ title, desc }) => (
                 <div key={title} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, padding: '12px 14px' }}>
-                  <span style={{ fontSize: '1rem', flexShrink: 0, marginTop: 1 }}>{emoji}</span>
+                  <Cross />
                   <div>
                     <strong style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, color: '#fff', marginBottom: 2 }}>{title}</strong>
                     <span style={{ fontSize: '0.76rem', color: '#7A6A9A' }}>{desc}</span>
