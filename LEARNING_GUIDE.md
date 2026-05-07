@@ -1,92 +1,154 @@
-# Stamped Landing Project Learning Guide
+# Stamped Landing Project Study Guide
 
-This guide explains how this project works step by step. It is written for someone who may not know React or modern web development yet. By the end, you should understand how this landing page is built, how the pieces work together, and how to change it.
+This guide is made for someone who is learning web development and React for the first time. It explains each part of the project clearly, step by step, with examples and definitions. By the end, you should understand how this landing page is built, how it appears in the browser, and how to update it.
 
 ---
 
 ## 1. What this project is
 
-This is a landing page built with:
+This project is a simple landing page website built with modern web tools. It is not a full application with a backend server or database. Instead, it is a static website that looks like a product landing page.
 
-- **React**: a JavaScript library for building user interfaces
-- **Vite**: a fast development server and build tool
-- **CSS**: for styling the page
+It uses:
 
-The project is not a full app with backend logic. It is a static marketing-style page with sections like a hero, features, and a footer.
+- **React** for the page structure and interactive behavior
+- **Vite** to run the page during development and create a fast build
+- **CSS** for colors, spacing, layout, and responsive design
+- **JavaScript** inside React for logic and events
+
+The page is made of small pieces called "components". Each component shows a section on the page, such as the navigation bar, the hero section, or the features section.
 
 ---
 
-## 2. How to run the project
+## 2. Project structure overview
 
-Open a terminal in the project folder and run:
+Open the project folder and look at these files and folders:
+
+- `package.json`: defines the project name, dependencies, and commands
+- `index.html`: the main HTML file loaded by the browser
+- `src/`: source code folder
+  - `main.jsx`: entry point that starts React
+  - `App.jsx`: root component that combines sections
+  - `index.css`: global style settings
+  - `components/`: React components for each section
+  - `hooks/`: reusable helper code
+  - `assets/`: images used in the page
+
+### Why this structure matters
+
+- `src/main.jsx` is where the web page begins.
+- `App.jsx` is the top-level React component.
+- `components/` contains the visible parts of the page.
+- `index.css` controls the page theme and mobile behavior.
+
+---
+
+## 3. How to run the project
+
+These are the commands you use in the terminal from the project folder:
+
+1. Install the packages:
 
 ```bash
 npm install
+```
+
+2. Start the project locally:
+
+```bash
 npm run dev
 ```
 
-This installs the project packages and starts a local development server. Then open the browser address shown by Vite, usually `http://localhost:5173`.
+After starting, Vite will show an address like `http://localhost:5173`. Open that address in your browser to see the page.
 
-If you want to build the app for production, use:
+3. Build the project for production:
 
 ```bash
 npm run build
 ```
 
----
-
-## 3. Main files to know
-
-The most important files are:
-
-- `package.json`: lists dependencies and commands
-- `src/main.jsx`: application entry point
-- `src/App.jsx`: top-level app layout
-- `src/index.css`: global styles and responsive CSS
-- `src/components/`: folder with each visible page section
-- `src/hooks/useReveal.js`: a small custom React hook
+That command creates optimized files for a real website.
 
 ---
 
-## 4. How React starts this page
+## 4. Basic web development concepts
 
-### 4.1 `src/main.jsx`
+If you are new to this, these are the main ideas:
 
-This is the first file that runs.
+### 4.1 HTML
+
+HTML is the code that describes the structure of a web page. It uses tags like `<div>`, `<h1>`, and `<a>`.
+
+Example:
+
+```html
+<h1>Hello</h1>
+<p>This is a paragraph.</p>
+```
+
+### 4.2 CSS
+
+CSS adds style to HTML. It controls colors, fonts, layout, and spacing.
+
+Example:
+
+```css
+p {
+  color: blue;
+}
+```
+
+### 4.3 JavaScript
+
+JavaScript is the language that makes pages interactive. React uses JavaScript to build the UI and respond to user actions.
+
+### 4.4 React
+
+React is a library for building user interfaces with JavaScript. Instead of writing plain HTML, React lets you write components.
+
+A component is a function that returns JSX. JSX looks like HTML, but it is written inside JavaScript.
+
+---
+
+## 5. React and Vite in this project
+
+### 5.1 `src/main.jsx`
+
+This file is the starting point. It tells React where to show the page.
 
 ```jsx
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
   </StrictMode>,
-)
+);
 ```
 
-What it does:
+Explanation:
 
-- imports global CSS
-- imports the main `App` component
-- tells React to render the app inside the `<div id="root">` element in `index.html`
+- `import` loads other files and code.
+- `createRoot(document.getElementById('root'))` finds the HTML element where the app appears.
+- `.render(<App />)` tells React to display the `App` component.
+- `<StrictMode>` helps find mistakes during development.
 
-### 4.2 `src/App.jsx`
+### 5.2 `src/App.jsx`
 
-This file is the app container. It puts the sections on the page in order.
+This file is the main app component. It puts all page sections together.
 
 ```jsx
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Problem from './components/Problem'
-import HowItWorks from './components/HowItWorks'
-import Features from './components/Features'
-import DashboardMockup from './components/DashboardMockup'
-import Metrics from './components/Metrics'
-import CTA from './components/CTA'
-import Footer from './components/Footer'
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Problem from "./components/Problem";
+import HowItWorks from "./components/HowItWorks";
+import Features from "./components/Features";
+import DashboardMockup from "./components/DashboardMockup";
+import Metrics from "./components/Metrics";
+import CTA from "./components/CTA";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -101,368 +163,548 @@ export default function App() {
       <CTA />
       <Footer />
     </>
-  )
+  );
 }
 ```
 
-This means the page is built by stacking these components in that order.
+Explanation:
+
+- Each line with `<Navbar />`, `<Hero />`, and so on is a component.
+- `<></>` is called a fragment. It groups multiple components without adding extra HTML.
+- `export default function App()` makes this component available to other files.
 
 ---
 
-## 5. How styles are applied
+## 6. Global styles: `src/index.css`
 
-### 5.1 Global styles: `src/index.css`
+This file controls look and feel for the whole site.
 
-This file sets fonts and resets default browser styles.
+### 6.1 What the file does
 
-Key parts:
+- imports a font from Google Fonts
+- resets default browser margins and padding
+- defines color variables for consistent design
+- sets the page background and text styles
+- adds responsive behavior for mobile screens
 
-- `box-sizing: border-box` - makes width calculations easier
-- CSS variables like `--purple`, `--text-dark`, `--bg`
-- `body { overflow-x: hidden; }` prevents horizontal scrolling
-- responsive rules for the mobile navigation menu
+### 6.2 Important parts explained
 
-### 5.2 Inline styles in components
-
-Most component styles are written directly in the component using `style={{ ... }}`.
-
-Example from `Hero.jsx`:
-
-```jsx
-<section style={{
-  minHeight: '100vh',
-  padding: 'clamp(100px, 12vw, 140px) 5vw 80px',
-  display: 'flex', alignItems: 'center',
-  background: 'linear-gradient(...)',
-}}>
-```
-
-That means each component controls its own appearance directly in JavaScript.
-
----
-
-## 6. Understanding the component structure
-
-### 6.1 Navbar: `src/components/Navbar.jsx`
-
-This component shows the top navigation.
-
-What it does:
-
-- shows the logo image from `src/assets/stamped_logo.png`
-- displays section links: `Problem`, `How it works`, `Features`
-- provides a CTA button that opens `https://stamped-flutter-app.vercel.app/`
-- includes a mobile hamburger button using `useState`
-- when a link is clicked, it scrolls to the matching section
-
-Important React concept:
-
-- `useState(false)` creates state to track if the mobile menu is open
-- `setMenuOpen(prev => !prev)` toggles the menu
-
-### 6.2 Hero: `src/components/Hero.jsx`
-
-This is the top section of the page.
-
-What it shows:
-
-- a headline with `Define. Track. Prove your work.`
-- a description paragraph
-- two buttons: a CTA link and a scroll link
-- a right-side image imported from `src/assets/stamped-team.jpg`
-
-Important React concept:
-
-- `useEffect()` runs after the component appears on the page
-- it adds the `visible` class to `.reveal` elements so they animate in
-
-### 6.3 Problem: `src/components/Problem.jsx`
-
-This component shows a before/after comparison.
-
-What it contains:
-
-- two lists: `before` and `after`
-- a red `Cross` icon for before items
-- a purple `Check` icon for after items
-- a custom hook `useReveal()` to animate the section when it scrolls into view
-
-Important concept:
-
-- arrays of objects are mapped to JSX elements with `before.map(...)`
-- small components can be defined inside the file (`Check` and `Cross`)
-
-### 6.4 HowItWorks: `src/components/HowItWorks.jsx`
-
-This section explains the product workflow in 3 steps.
-
-What it does:
-
-- defines a `steps` array with `start`, `manage`, and `complete`
-- renders each step as a card
-- uses `useReveal()` so the whole section fades in
-- uses CSS for responsiveness at smaller widths
-
-### 6.5 Features: `src/components/Features.jsx`
-
-This section lists product features.
-
-What it does:
-
-- defines 6 feature objects in `features`
-- each feature has a title, description, and SVG icon as JSX
-- renders a `FeatureCard` for each feature
-- includes hover styles and responsive layout
-
-### 6.6 DashboardMockup: `src/components/DashboardMockup.jsx`
-
-This is a static mockup of a dashboard.
-
-What it shows:
-
-- a sidebar with project navigation and user info
-- a main panel with a list of project cards
-- a floating detail card in the lower-right corner
-- `projects` data is hard-coded in the file
-
-This component does not fetch real data. It is a visual example.
-
-### 6.7 CTA: `src/components/CTA.jsx`
-
-This is the final call-to-action section.
-
-What it shows:
-
-- a headline and supporting paragraph
-- a CTA button linking to the external app
-- a soft background glow effect
-
-### 6.8 Footer: `src/components/Footer.jsx`
-
-This is the bottom section.
-
-What it shows:
-
-- a logo image imported from `src/assets/stamped-white-logo.png`
-- a short product sentence
-- a copyright line
-
----
-
-## 7. The custom hook: `src/hooks/useReveal.js`
-
-This hook makes elements appear when they scroll into view.
-
-```jsx
-import { useEffect, useRef } from 'react'
-
-export function useReveal(threshold = 0.1) {
-  const ref = useRef()
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible') },
-      { threshold }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [threshold])
-
-  return ref
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 ```
 
-How it works:
+This means every element includes its border and padding when calculating width and height. It also removes default spacing.
 
-- `useRef()` creates a reference to a DOM element
-- `IntersectionObserver` watches when the element enters the browser viewport
-- when the element becomes visible, it adds the CSS class `visible`
-- the component using this hook attaches `ref` to a `<div>` or another element
-
-For example, `Problem.jsx` uses:
-
-```jsx
-const ref = useReveal()
-<div ref={ref}> ... </div>
-```
-
----
-
-## 8. How React components work in this project
-
-### 8.1 Functional components
-
-All components are functions that return JSX.
-
-Example:
-
-```jsx
-export default function Navbar() {
-  return (
-    <nav> ... </nav>
-  )
+```css
+:root {
+  --purple: #5b21b6;
+  --text-dark: #111827;
+  --bg: #f9fafb;
 }
 ```
 
-JSX looks like HTML but works inside JavaScript. It is transformed by React into the UI.
+These are CSS variables. They make it easy to use the same colors in many places.
 
-### 8.2 Props
-
-A component can receive data through props.
-
-Example in this project:
-
-- `AppMockup({ compact = false })` accepts `compact`
-
-This project mostly uses components without props, because it is a static page.
-
-### 8.3 State
-
-State is data that changes over time.
-
-`Navbar.jsx` uses state:
-
-```jsx
-const [menuOpen, setMenuOpen] = useState(false)
+```css
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--white);
+  overflow-x: hidden;
+}
 ```
 
-This controls whether the mobile menu is visible.
+This sets the page font and prevents the page from scrolling horizontally.
 
-### 8.4 Events
+### 6.3 Mobile navigation styles
 
-HTML-like events are handled with functions.
+At the bottom of `index.css`, there is code that changes the navigation on small screens.
 
-Example:
+```css
+@media (max-width: 900px) {
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-links {
+    display: none !important;
+  }
+  .navbar-links.open {
+    display: flex !important;
+  }
+}
+```
+
+This means:
+
+- when the screen width is 900 pixels or less,
+- show the hamburger menu button,
+- hide the navigation links by default,
+- show them only if the menu is open.
+
+---
+
+## 7. Components and how they work
+
+Each component is a separate file inside `src/components`.
+
+React components are functions that return JSX. JSX looks like HTML but acts like JavaScript.
+
+### 7.1 Navbar: `src/components/Navbar.jsx`
+
+This is the top navigation bar.
+
+#### What it does
+
+- shows the logo on the left
+- shows navigation links
+- shows the call-to-action button
+- makes the menu responsive on mobile
+
+#### Key concepts in Navbar
+
+```jsx
+const [menuOpen, setMenuOpen] = useState(false);
+```
+
+This line creates a piece of state called `menuOpen`:
+
+- `menuOpen` is the current value (true or false)
+- `setMenuOpen` is a function to change that value
+- `useState(false)` starts the value as `false`
+
+When the user clicks the hamburger button, the code runs:
 
 ```jsx
 onClick={() => setMenuOpen(prev => !prev)}
 ```
 
-This means: when the button is clicked, toggle the value of `menuOpen`.
+This toggles the menu open and closed.
 
----
-
-## 9. Understanding the file `src/components/AppMockup.jsx`
-
-This file contains a visual mockup component. It is currently not used by the app.
-
-If you want to show it again, import it in `Hero.jsx` and render `<AppMockup />`.
-
-The file is useful for learning because it shows:
-
-- how to build a UI layout with nested `div` elements
-- how `map()` renders repeated cards
-- how to use inline styles to create a dashboard look
-
----
-
-## 10. How sections connect to each other
-
-These links use HTML anchors and page IDs:
-
-- `Problem` link scrolls to `id="problem"`
-- `How it works` link scrolls to `id="how"`
-- `Features` link scrolls to `id="features"`
-
-That happens in `Navbar.jsx` with `document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })`.
-
----
-
-## 11. How to make a change
-
-### 11.1 Change text
-
-Find the section file and replace the text. For example, to change the hero title in `Hero.jsx`:
+#### HTML-like structure in Navbar
 
 ```jsx
-<h1>Define. Track.<br /><span>Prove</span> your work.</h1>
+<nav style={styles.nav}>
+  <a href="#" style={styles.logo}>...</a>
+  <button ... className="navbar-toggle">...</button>
+  <div style={styles.links} className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+    ...
+  </div>
+</nav>
 ```
 
-### 11.2 Change colors
+- `<nav>` is a navigation section
+- `<a>` is a link
+- `<button>` is a clickable button
+- `className` is how React adds CSS classes
+- `` `navbar-links ${menuOpen ? 'open' : ''}` `` adds the `open` class when the menu is open
 
-Edit CSS variables in `src/index.css`:
+#### Why the CTA button works differently
+
+The button opens an external site using:
+
+```jsx
+<a href="https://stamped-flutter-app.vercel.app/" target="_blank" rel="noopener noreferrer">...
+```
+
+That means:
+
+- the link goes to the external address
+- `target="_blank"` opens it in a new tab
+- `rel="noopener noreferrer"` is a security practice for external links
+
+### 7.2 Hero: `src/components/Hero.jsx`
+
+This is the first large section visitors see.
+
+#### What it shows
+
+- a top label: "For freelancers who mean business"
+- main heading: "Define. Track. Prove your work."
+- paragraph text
+- two buttons: one external button and one internal scroll link
+- a right-side image with rounded corners
+
+#### How the reveal effect works
+
+The component uses this code:
+
+```jsx
+useEffect(() => {
+  setTimeout(() => {
+    document
+      .querySelectorAll(".reveal")
+      .forEach((el) => el.classList.add("visible"));
+  }, 100);
+}, []);
+```
+
+- `useEffect()` runs a function after the component appears
+- `querySelectorAll('.reveal')` finds all elements with the `reveal` class
+- it adds the `visible` class so CSS can animate them
+
+#### Why the image may not show
+
+The image is imported at the top:
+
+```jsx
+import heroImage from "../assets/stamped-team.jpg";
+```
+
+Then it is used inside an `<img />` tag.
+
+### 7.3 Problem: `src/components/Problem.jsx`
+
+This section compares "Without Stamped" and "With Stamped".
+
+#### What it does
+
+- defines two arrays: `before` and `after`
+- renders each item using `.map()`
+- shows a red cross icon for problems
+- shows a green check icon for benefits
+- uses `useReveal()` to animate the section when it scrolls into view
+
+#### How `.map()` works
+
+The code uses:
+
+```jsx
+{
+  before.map(({ title, desc }) => <div key={title}> ... </div>);
+}
+```
+
+- `before.map(...)` loops over each item in the array
+- it returns a new piece of UI for each item
+- `key={title}` gives each item a unique name for React
+
+#### Small reusable pieces inside the file
+
+There are two icon components:
+
+- `Check` shows a checkmark
+- `Cross` shows an X
+
+These are plain functions that return JSX.
+
+### 7.4 How it Works: `src/components/HowItWorks.jsx`
+
+This section explains the product flow in 3 steps.
+
+#### What it does
+
+- defines a `steps` array of objects
+- renders one card per step
+- uses `useReveal()` for animation
+- uses responsive CSS for smaller screens
+
+#### Why this section is useful
+
+It shows how data can be separated from the UI. The content lives in the `steps` array, and the component renders it.
+
+### 7.5 Features: `src/components/Features.jsx`
+
+This section lists product benefits.
+
+#### What it does
+
+- defines a `features` array with title, description, icon
+- uses a `FeatureCard` function to render each item
+- applies hover styles so cards move slightly when hovered
+
+#### Why icons are inside JSX
+
+Instead of importing images, the file uses small SVG icons directly in the component. This is a common React pattern for simple graphics.
+
+### 7.6 DashboardMockup: `src/components/DashboardMockup.jsx`
+
+This section shows a fake app dashboard.
+
+#### What it contains
+
+- a left sidebar with project labels and user info
+- a main panel with a list of project cards
+- a floating detail box at the bottom right
+
+#### Important note
+
+This is only a visual mockup. It does not connect to a real application or data source.
+
+### 7.7 CTA: `src/components/CTA.jsx`
+
+This is the call-to-action section near the bottom.
+
+#### What it shows
+
+- a headline encouraging organization
+- a paragraph explaining the product
+- a button linking to the external app
+
+### 7.8 Footer: `src/components/Footer.jsx`
+
+This is the bottom of the page.
+
+#### What it shows
+
+- the footer logo image
+- a short tagline
+- a copyright line
+
+---
+
+## 8. What JSX means
+
+JSX is the syntax that looks like HTML but runs in JavaScript.
+
+Example:
+
+```jsx
+<div style={{ color: "red" }}>Hello</div>
+```
+
+Explanation:
+
+- `<div>` is JSX, not HTML.
+- `style={{ color: 'red' }}` is an object in JavaScript.
+- React turns JSX into real HTML in the browser.
+
+### Why use JSX?
+
+JSX makes it easy to write UI and JavaScript together. You can use JavaScript expressions inside it with curly braces `{}`.
+
+Example:
+
+```jsx
+<span>{title}</span>
+```
+
+This shows the value of the variable `title`.
+
+---
+
+## 9. How imports work
+
+React files use `import` to bring code and assets from other files.
+
+Example:
+
+```jsx
+import Navbar from "./components/Navbar";
+import heroImage from "../assets/stamped-team.jpg";
+```
+
+- `Navbar` is a component from another file.
+- `heroImage` is an image file used in JSX.
+
+In React projects, you can import images and use them in `<img src={...} />`.
+
+---
+
+## 10. How the page appears in the browser
+
+### 10.1 `index.html`
+
+The page starts with an HTML file. It usually contains a `div` with `id="root"`.
+
+React replaces that `div` with the full app.
+
+### 10.2 React render process
+
+When the app runs:
+
+1. `main.jsx` loads `App`
+2. `App.jsx` loads each component
+3. each component returns JSX
+4. React converts JSX to browser HTML
+5. the browser displays the page
+
+---
+
+## 11. Understanding the mobile menu
+
+The navbar changes on smaller screens.
+
+### 11.1 How it works
+
+- CSS hides the menu links on mobile
+- a hamburger button appears instead
+- clicking the button toggles the menu open or closed
+
+### 11.2 Why `useState` is needed
+
+`useState` stores whether the menu is open. The UI updates automatically when the value changes.
+
+---
+
+## 12. The `useReveal` hook in detail
+
+This custom hook is in `src/hooks/useReveal.js`.
+
+```jsx
+import { useEffect, useRef } from "react";
+
+export function useReveal(threshold = 0.1) {
+  const ref = useRef();
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.classList.add("visible");
+      },
+      { threshold },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return ref;
+}
+```
+
+### 12.1 What `useRef()` does
+
+- it creates a reference to a DOM element
+- it starts empty
+- when React renders an element with `ref={ref}`, the actual element is stored in `ref.current`
+
+### 12.2 What `IntersectionObserver` does
+
+- watches whether an element is visible on screen
+- when it becomes visible, it runs a function
+- the function adds the `visible` class
+
+### 12.3 Why this is useful
+
+The class `visible` triggers animation styles in the component. It makes sections fade in when you scroll.
+
+---
+
+## 13. How to read a component file
+
+Use this method to learn each file:
+
+1. read the imports at the top
+2. find the main function like `export default function ...()`
+3. read the returned JSX inside `return (...)`
+4. note any helper functions or data arrays
+5. check for `useState`, `useEffect`, or custom hooks
+6. understand the style values inside `style={{ ... }}`
+
+### Example: `Problem.jsx`
+
+- imports `useReveal`
+- defines `before` and `after` arrays
+- defines `Check` and `Cross` small icon components
+- uses `before.map(...)` and `after.map(...)`
+- returns the section content
+
+---
+
+## 14. Making changes safely
+
+### 14.1 Changing a title
+
+Find the text in the component file, edit it, and save.
+
+### 14.2 Changing colors
+
+Use CSS variables in `src/index.css`.
+
+Example:
 
 ```css
---purple: #5B21B6;
---text-dark: #111827;
+--purple: #5b21b6;
+--bg: #f9fafb;
 ```
 
-### 11.3 Add a new section
+Changing these variables updates many places at once.
+
+### 14.3 Adding a new image
+
+1. put the image in `src/assets/`
+2. import it in the component:
+
+```jsx
+import myImage from "../assets/my-image.png";
+```
+
+3. use it:
+
+```jsx
+<img src={myImage} alt="My image description" />
+```
+
+### 14.4 Adding a new component
 
 1. create `src/components/NewSection.jsx`
-2. export a component that returns JSX
-3. import it in `src/App.jsx`
-4. add `<NewSection />` inside the returned fragment
-
-### 11.4 Add a new image
-
-1. place the image in `src/assets/`
-2. import it in a component:
-
-```jsx
-import myImage from '../assets/my-image.png'
-```
-
-3. use it in JSX:
-
-```jsx
-<img src={myImage} alt="Description" />
-```
+2. write a function that returns JSX
+3. export the function with `export default`
+4. import it in `src/App.jsx`
+5. add `<NewSection />` inside the `return` of `App`
 
 ---
 
-## 12. Common learning steps
+## 15. A step-by-step study plan
 
-Follow this path to learn from the project:
+Follow these steps to learn the project from beginner level:
 
-1. open `src/main.jsx` and understand the root render
-2. open `src/App.jsx` and see the page structure
-3. open `Navbar.jsx` and learn about state and clicks
-4. open `Hero.jsx` and learn about layout and effects
-5. open `Problem.jsx` and learn about mapping arrays to UI
-6. open `HowItWorks.jsx` and `Features.jsx` and learn more component patterns
-7. open `useReveal.js` to learn how React interacts with browser APIs
-8. change one text line, save, and see the update in the browser
-9. add a new simple component and import it into `App.jsx`
-
----
-
-## 13. Tips for beginners
-
-- React components are just JavaScript functions that return UI.
-- `useEffect` runs code after the component appears.
-- `useState` stores values that can change.
-- JSX looks like HTML but it is JavaScript.
-- `style={{ ... }}` is how this project writes most CSS directly inside components.
-- A hook like `useReveal()` is reusable logic shared across components.
+1. Open `src/main.jsx` and understand how React starts.
+2. Open `src/App.jsx` and see how sections are composed.
+3. Open `src/index.css` and learn global CSS and variables.
+4. Open `src/components/Navbar.jsx` and learn state, links, and the mobile menu.
+5. Open `src/components/Hero.jsx` and learn layout, images, and effects.
+6. Open `src/components/Problem.jsx` and learn mapping arrays to content.
+7. Open `src/components/HowItWorks.jsx` and `src/components/Features.jsx` to learn repeated patterns.
+8. Open `src/components/DashboardMockup.jsx` to see a more complex UI layout.
+9. Open `src/components/CTA.jsx` and `src/components/Footer.jsx` to learn final page sections.
+10. Open `src/hooks/useReveal.js` to learn how React can interact with browser behavior.
 
 ---
 
-## 14. Where to learn more
+## 16. Common beginner questions answered
 
-If you want to learn React step by step, start with these topics:
+### Why are there so many `<div>` tags?
 
-- React components and JSX
-- React state and hooks (`useState`, `useEffect`)
-- how React renders lists with `map()`
-- how to pass props to components
-- how to use CSS for layout and responsive design
-- how Vite starts a React app
+Each `<div>` is a box that helps arrange content. Layout is built with nested boxes.
 
-This project is a great starting place because it is small, visual, and easy to change.
+### What is the difference between `className` and `class`?
+
+In React, use `className` instead of `class` because `class` is a reserved word in JavaScript.
+
+### Why are some components written inside the same file?
+
+Small helper components like `Check` and `Cross` are placed inside `Problem.jsx` because they are only used there.
+
+### Why is `AppMockup.jsx` not visible in the page?
+
+The file is defined but it is not currently imported and used in any active component. To show it, import it in `Hero.jsx` or another component.
 
 ---
 
-## 15. Final note
+## 17. Glossary of terms
 
-This landing page is built from simple pieces:
+- **React**: a library for building user interfaces.
+- **JSX**: a syntax that looks like HTML inside JavaScript.
+- **Component**: a reusable piece of UI.
+- **State**: values that a component remembers and can change.
+- **Props**: input values passed from one component to another.
+- **Hook**: a React function that adds features like state or effects.
+- **useState**: a hook to store state.
+- **useEffect**: a hook to run code after render.
+- **useRef**: a hook to keep a reference to a DOM element.
+- **Vite**: a fast tool to run and build the app.
 
-- a render entry point
-- a component tree
-- inline styles and a small CSS file
-- data arrays rendered to UI
-- a few reusable helpers
+---
 
-By reading each file and making one change at a time, you can learn both React and how this site works.
+## 18. Final study advice
+
+Start small. Change one sentence in `Hero.jsx`, save the file, and see the page update in the browser. Then try changing a color variable in `src/index.css`.
+
+Use this project as a learning playground. The more you edit and observe, the more you will understand React and modern frontend development.
