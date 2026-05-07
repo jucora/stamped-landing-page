@@ -1,4 +1,4 @@
-import stampedLogo from '../assets/stamped_logo.png'
+import stampedLogo from '../assets/stamped-white-logo.png'
 
 export default function Footer() {
   return (
