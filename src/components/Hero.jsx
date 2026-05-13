@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import StackedImages from "./StackedImages";
 import WaitlistForm from "./WaitlistForm";
 
 export default function Hero() {
@@ -11,10 +12,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-    className="bg-[radial-gradient(ellipse_80%_100%_at_40%_0%,rgba(139,92,246,0.12)_50%,transparent_70%)]"
-      id="hero"
-    >
+    <section className="bg-[radial-gradient(ellipse_80%_100%_at_40%_0%,rgba(139,92,246,0.12)_50%,transparent_70%)]">
       <div className="px-6 pt-30 mx-auto w-full items-center text-left md:text-center">
         <div
           className="reveal max-w-lg md:max-w-3xl mx-auto"
@@ -39,14 +37,10 @@ export default function Hero() {
         </div>
 
         <div
-          className="reveal"
+          className="reveal flex justify-center items-center mt-25 0 mb-10 px-6 md:px-[5%]"
           style={{ transitionDelay: "120ms" }}
         >
-          {/* <img
-            src={stampedScreenshot}
-            alt="Stamped Screenshot"
-            className="object-cover h-full w-full"
-          /> */}
+          <StackedImages />
         </div>
       </div>
 

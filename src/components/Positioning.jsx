@@ -19,11 +19,10 @@ export default function Positioning() {
           </p>
 
           <p className="md:px-5 text-gray-500 leading-relaxed max-w-4xl mx-auto my-6">
-            As projects progess, agreements get buried in chats, scope changes
-            become unclear, and payment conversations become messy. Stamped
-            provides freelancers one structured, shared record for every
-            project, from agreement to delivery to approval, so expectations
-            stay clear and every step is documented.
+            As work progresses, agreements get buried in chats, scope changes
+            become unclear, and payment conversations turn messy. Stamped moves
+            with you — a structured, shared record documenting every step, from
+            first agreement to final approval, so that expectations stay clear.
           </p>
         </div>
       </div>

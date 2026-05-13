@@ -6,11 +6,11 @@ const projects = [
   { name: 'Branding', client: "Bayo's Grills", meta1: '3 Deliverables · Waiting for Client', meta2: 'Due date: Jul 30, 2027', status: 'Pending', dot: '#F59E0B', tc: '#92400E' },
 ]
 
-export default function DashboardMockup() {
+export default function DashboardMockUp() {
   const ref = useReveal()
 
   return (
-    <section style={{ padding: '0 5vw 96px', background: 'var(--bg)' }}>
+    <section style={{ background: 'var(--bg)' }} className="pt-30 pb-10 px-[10%]">
       <div ref={ref} className="reveal" style={{ maxWidth: 1160, margin: '0 auto' }}>
         <div style={{ borderRadius: 14, border: '1px solid var(--border)', boxShadow: '0 20px 60px rgba(0,0,0,0.08)', overflow: 'hidden', background: 'var(--white)' }}>
           {/* Title bar */}
