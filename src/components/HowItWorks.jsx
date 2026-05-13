@@ -1,82 +1,169 @@
-import { useReveal } from '../hooks/useReveal'
+import { useReveal } from "../hooks/useReveal";
 
-const steps = [
-  { num: '1', title: 'Start', desc: 'Create your account and define your first project — name, client, key deliverables. Done in under 60 seconds.' },
-  { num: '2', title: 'Manage', desc: 'Generate a unique link for your client. They can view progress, approve deliverables, and leave comments — no account needed.', featured: true },
-  { num: '3', title: 'Complete', desc: 'Mark deliverables as done. Build a verifiable history of all your freelance work over time.' },
-]
+const features = [
+  {
+    title: "Create your projects",
+    desc: "Define deliverables, deadlines, and payment terms.",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M11.35 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5.35" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <path d="M14 19h6" />
+        <path d="M17 16v6" />
+      </svg>
+    ),
+  },
+  {
+    title: "Send the client link",
+    desc: "Your client reviews and confirms with a secure verification code in one tap.",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M9 17H7A5 5 0 0 1 7 7h2" />
+        <path d="M15 7h2a5 5 0 1 1 0 10h-2" />
+        <line
+          x1="8"
+          x2="16"
+          y1="12"
+          y2="12"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Track delivery and approvals",
+    desc: "Every submission, approval, and update is timestamped and recorded.",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M13 5h8" />
+        <path d="M13 12h8" />
+        <path d="M13 19h8" />
+        <path d="m3 17 2 2 4-4" />
+        <path d="m3 7 2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    title: "Export your project record",
+    desc: "Generate a professional PDF snapshot at anytime.",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+        <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <path d="M12 18v-6" />
+        <path d="m9 15 3 3 3-3" />
+      </svg>
+    ),
+  },
+];
 
 export default function HowItWorks() {
-  const ref = useReveal()
+  const ref = useReveal();
 
   return (
-    <section id="how" style={{ padding: '96px 5vw', background: 'var(--white)' }}>
-      <div ref={ref} className="reveal" style={{ maxWidth: 1160, margin: '0 auto' }}>
+    <section
+      id="features"
+      className="py-24 px-[5%] bg-gray-200/60"
+    >
+      <div
+        ref={ref}
+        className="reveal max-w-6xl mx-auto"
+      >
+        <h2 className="my-4 text-xs md:text-sm font-semibold uppercase tracking-wide text-(--purple)">
+          How it works
+        </h2>
 
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <span style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--purple)', marginBottom: 12 }}>
-            How it works
-          </span>
-          <h2 style={{ fontSize: 'clamp(1.875rem, 3.5vw, 2.625rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.12, color: 'var(--text-dark)', marginBottom: 16 }}>
-            Start → Manage → Complete
-          </h2>
-          <p style={{ fontSize: '1.0625rem', color: 'var(--text-muted)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
-            Three steps. No tutorials. No wizards. You learn by doing.
-          </p>
-        </div>
+        <p className="text-3xl md:text-4xl font-bold leading-tight tracking-tight max-w-xl lg:max-w-2xl mb-10">
+          Start, manage, and complete your client workflow in one place
+        </p>
 
-        {/* Steps */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 32, position: 'relative', marginBottom: 56 }} className="steps-grid">
-          <div style={{ position: 'absolute', top: 28, left: 'calc(33.33% + 16px)', right: 'calc(33.33% + 16px)', height: 1, background: 'var(--purple-border)', zIndex: 0 }} className="steps-line" />
-          {steps.map(({ num, title, desc, featured }) => (
-            <div key={num} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-              <div style={{
-                width: 56, height: 56, borderRadius: '50%',
-                border: featured ? 'none' : '1.5px solid var(--purple-border)',
-                background: featured ? 'var(--purple)' : 'var(--white)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1rem', fontWeight: 800,
-                color: featured ? '#fff' : 'var(--purple)',
-                marginBottom: 20,
-              }}>
-                {num}
-              </div>
-              <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 8, letterSpacing: '-0.01em' }}>{title}</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.65 }}>{desc}</p>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 border border-gray-300 rounded-xl overflow-hidden">
+          {features.map(({ title, desc, icon }, index) => (
+            <FeatureCard
+              key={title}
+              title={title}
+              desc={desc}
+              icon={icon}
+              index={index}
+              total={features.length}
+            />
           ))}
-        </div>
-
-        {/* Time banner */}
-        <div style={{
-          borderRadius: 14, background: 'var(--purple)',
-          padding: '40px 48px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          gap: 32, flexWrap: 'wrap',
-        }}>
-          <div>
-            <h3 style={{ fontSize: '1.375rem', fontWeight: 800, color: '#fff', marginBottom: 6, letterSpacing: '-0.02em' }}>
-              Time to your first client link
-            </h3>
-            <p style={{ fontSize: '0.9375rem', color: '#C4B5FD' }}>
-              From sign-up to sharing your project. No friction, no setup wizards.
-            </p>
-          </div>
-          <div style={{ fontSize: '4.5rem', fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-0.04em', whiteSpace: 'nowrap' }}>
-            120<sub style={{ fontSize: '1.25rem', color: '#A78BFA', fontWeight: 600, verticalAlign: 'middle', marginLeft: 4 }}>sec</sub>
-          </div>
         </div>
       </div>
 
       <style>{`
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        @media (max-width: 768px) {
-          .steps-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .steps-line { display: none !important; }
-        }
       `}</style>
     </section>
-  )
+  );
+}
+
+function FeatureCard({ title, desc, icon, index, total }) {
+  // Divider logic — avoids double borders by only adding right/bottom on non-edge cells
+  const isLastInRow2col = index % 2 === 1; // right edge in 2-col layout
+  const isLastInRow4col = index === total - 1; // right edge in 4-col layout
+  const isFirstTwoRows = index < 2; // top row in 2-col (needs bottom border)
+
+  return (
+    <div
+      className={[
+        "group bg-white p-6 transition-colors duration-300 hover:bg-purple-50/50",
+        !isLastInRow2col && "sm:border-r border-gray-300", // right divider: always except last in each row
+        index === 1 && "xl:border-r xl:border-gray-300", // on xl, restore right border for col 1 (index 1) and remove for last
+        isLastInRow4col && "xl:border-r-0", // on xl, restore right border for col 1 (index 1) and remove for last
+        isFirstTwoRows && "border-b border-gray-300 xl:border-b-0", // bottom divider: only first row in 2-col; on xl remove all bottom borders
+        index === 2 && "border-b border-gray-300 sm:border-b-0", // in 2-col, index 2 also needs bottom border (it's in the top of its pair)
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="w-8 h-8 p-1.5 rounded-[10px] bg-purple-100/50 flex items-center justify-center text-(--purple) group-hover:bg-(--purple) group-hover:text-white transition duration-300">
+          {icon}
+        </div>
+        <span className="text-sm text-gray-400 font-mono">0{index + 1}</span>
+      </div>
+
+      <h3 className="text-[0.9375rem] font-bold tracking-[-0.01em] mb-1.5">
+        {title}
+      </h3>
+      <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+    </div>
+  );
 }
